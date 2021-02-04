@@ -10,6 +10,8 @@ export default function AddAnnouncement({onCreate}){
 
         if(title.trim() && description.trim()){
             onCreate(title, description);
+            setTitle('');
+            setDescription('');
         }
     }
     

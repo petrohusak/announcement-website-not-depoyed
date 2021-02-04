@@ -1,10 +1,12 @@
 import './App.css';
-import React from 'react'
+import React, { useState } from 'react'
 import AnnouncementList from './AnnouncementList'
 import AddAnnouncement from './AddAnnouncement'
+import Search from './Search'
 
 function App() {
-  const [announcements, setAnnouncements] = React.useState([
+  let [storingVariablesWhenSearching, setStoringVariablesWhenSearching] = useState([]) 
+  let [announcements, setAnnouncements] = useState([
     {id: 1, title:'cxv', description:'asdszfsdfad', date:'10.10.10'},
     {id: 2, title:'sdf', description:'dfgkjdnfgks', date:'10.10.10'},
     {id: 3, title:'xfg', description:'sfdgijkdfgf', date:'10.10.10'},
@@ -44,12 +46,25 @@ function App() {
     )
   }
 
+  function switchSearch(searchQuery){
+    if(searchQuery === false){
+      setAnnouncements(announcements = [...storingVariablesWhenSearching])
+    } else {
+      setStoringVariablesWhenSearching(storingVariablesWhenSearching =[...announcements])
+      setAnnouncements(announcements.filter(announcement => announcement.title === searchQuery))
+    }
+  }
+
   return (
     <div className="App">
       <AddAnnouncement 
       onCreate={createAnnouncement}
       />
-      
+
+      <Search 
+      onCreate={switchSearch}
+      />
+
       <AnnouncementList 
       announcements={announcements}
       changeAnnouncement={editAnnouncement}

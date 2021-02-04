@@ -1,6 +1,7 @@
 import './App.css';
-import AnnouncementList from './AnnouncementList'
 import React from 'react'
+import AnnouncementList from './AnnouncementList'
+import AddAnnouncement from './AddAnnouncement'
 
 function App() {
   const [announcements, setAnnouncements] = React.useState([
@@ -31,15 +32,31 @@ function App() {
     )
   }
   
+  function createAnnouncement(title, description){
+    setAnnouncements(
+      [{
+          id: Date.now(),
+          title,
+          description,
+          date: '' + new Date().getFullYear() + '.' + new Date().getMonth() + '.' + new Date().getDate()
+        }
+      ].concat(announcements)    
+    )
+  }
+
   return (
     <div className="App">
+      <AddAnnouncement 
+      onCreate={createAnnouncement}
+      />
+      
       <AnnouncementList 
       announcements={announcements}
       changeAnnouncement={editAnnouncement}
       removeAnnouncement={deleteAnnouncement}
       />
     </div>
-  );
+  )
 }
 
 export default App;

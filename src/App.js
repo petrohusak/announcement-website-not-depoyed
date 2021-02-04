@@ -5,17 +5,17 @@ import AddAnnouncement from './AddAnnouncement'
 import Search from './Search'
 
 function App() {
-  let [storingVariablesWhenSearching, setStoringVariablesWhenSearching] = useState([]) 
+  let [storingVariablesWhenSearching, setStoringVariablesWhenSearching] = useState([]); 
   let [announcements, setAnnouncements] = useState([
-    {id: 1, title:'cxv', description:'asdszfsdfad', date:'10.10.10', visibility: false},
-    {id: 2, title:'sdf', description:'dfgkjdnfgks', date:'10.10.10', visibility: false},
-    {id: 3, title:'xfg', description:'sfdgijkdfgf', date:'10.10.10', visibility: false},
-  ])
+    {id: 1, title:'first title', description:'first description', date:'10.12.2020', visibility: false, similar:[]},
+    {id: 2, title:'second title', description:'another description', date:'15.1.2019', visibility: false, similar:[]},
+    {id: 3, title:'first', description:'some words', date:'1.5.2021', visibility: false, similar:[]},
+  ]);
 
   function editAnnouncement(id) {
     let newTitle = prompt('Enter new title', 'new title');
     let newDescription = prompt('Enter new description', 'new description');
-    let newDate = '' + new Date().getFullYear() + '.' + new Date().getMonth() + '.' + new Date().getDate();
+    let newDate = '' + new Date().getDate() + '.' + new Date().getMonth() + '.' + new Date().getFullYear();
     setAnnouncements(
       announcements.map(announcement => {
         if(announcement.id === id){
@@ -40,8 +40,9 @@ function App() {
           id: Date.now(),
           title,
           description,
-          date: '' + new Date().getFullYear() + '.' + new Date().getMonth() + '.' + new Date().getDate(),
-          visibility: false
+          date: '' + new Date().getDate() + '.' + new Date().getMonth() + '.' + new Date().getFullYear(),
+          visibility: false,
+          similar: [] 
         }
       ].concat(announcements)    
     )
@@ -55,13 +56,37 @@ function App() {
       setAnnouncements(announcements.filter(announcement => announcement.title === searchQuery))
     }
   }
-
+   
   function changeVisibilityOfElements(id){
     setAnnouncements(
       announcements.map(announcement=>{
         if(announcement.id === id){
           announcement.visibility = !announcement.visibility;
         }
+        return announcement;
+      })
+    )
+
+    let bufferTitle;
+    let bufferDescription;
+    let temporaryId;
+    setAnnouncements(
+      announcements.map(announcement=>{
+        bufferTitle = announcement.title.split(' ');
+        bufferDescription = announcement.description.split(' ');
+        temporaryId = announcement.id;
+        for(let i=0; i < bufferTitle.length; i++){
+          console.log(`buffer${i}= `, bufferTitle[i])
+        }
+        announcements.map(item=>{          
+          for(let i=0; i < bufferDescription.length; i++){
+            if(temporaryId!==item.id && item.title.includes(bufferTitle[i])){
+              if(item.description.includes(bufferDescription[i]))
+              announcement.similar[i] = item.title + ': ' + item.description;
+            }
+          }
+          return announcement;
+        })
         return announcement;
       })
     )

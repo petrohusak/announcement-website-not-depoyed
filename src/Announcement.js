@@ -8,9 +8,9 @@ export default function Announcement({announcement, deleteAnnouncement, editAnno
             <div className={announcement.visibility ? '':'hidden'}>{announcement.description}</div>
             <div className={announcement.visibility ? '':'hidden'}>Date: {announcement.date}</div>
             <div className={announcement.visibility ? '':'hidden'}>Similar announcement:</div>
-            <span className={announcement.visibility ? '':'hidden'}>similar</span>
-            <span className={announcement.visibility ? '':'hidden'}> similar</span>
-            <span className={announcement.visibility ? '':'hidden'}> similar</span>
+            <div className={announcement.visibility ? '':'hidden'}>{announcement.similar[0]}</div>
+            <div className={announcement.visibility ? '':'hidden'}>   {announcement.similar[1]}</div>
+            <div className={announcement.visibility ? '':'hidden'}>   {announcement.similar[2]}</div>
             <div>
                 <button onClick={()=>changeVisibilityOfElements(announcement.id)}>{announcement.visibility ? 'Hide' : 'Show more'}</button>
                 <button onClick={()=>editAnnouncement(announcement.id)}>Edit</button>

@@ -19,7 +19,7 @@ export default function Search({onCreate}){
             Enter title, that you want to find:<br/>
             <input value={necessary} onChange={event => setNecessary(event.target.value)}/><br/>
             <button>Search</button><br/>  
-            Press button one more time, if you want return all announcement 
+            Press button one more time, if you want return all announcements 
         </form>
     )
 }

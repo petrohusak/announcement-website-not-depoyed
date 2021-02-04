@@ -11,9 +11,17 @@ function App() {
 
   function editAnnouncement(id) {
     let newTitle = prompt('Enter new title', 'new title');
-    let newExplanation = prompt('Enter new explanation', 'new explanation');
+    let newDescription = prompt('Enter new description', 'new description');
+    let newDate = '' + new Date().getFullYear() + '.' + new Date().getMonth() + '.' + new Date().getDate();
     setAnnouncements(
-      announcements[announcements.length] = {id: announcements.length, title: newTitle, briefExplanation: newExplanation, date: '' + new Date().getFullYear() + new Date().getMonth() + new Date().getDate()}
+      announcements.map(announcement => {
+        if(announcement.id === id){
+          announcement.title = newTitle;
+          announcement.description = newDescription;
+          announcement.date = newDate;
+        }
+        return announcement;
+      })
     )
   }
 

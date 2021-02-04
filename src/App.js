@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import AnnouncementList from './AnnouncementList'
+import React from 'react'
 
 function App() {
+  const [announcements, setAnnouncements] = React.useState([
+    {id: 1, title:'cxv', description:'asdszfsdfad', date:'10.10.10'},
+    {id: 2, title:'sdf', description:'dfgkjdnfgks', date:'10.10.10'},
+    {id: 3, title:'xfg', description:'sfdgijkdfgf', date:'10.10.10'},
+  ])
+
+  function editAnnouncement(id) {
+    let newTitle = prompt('Enter new title', 'new title');
+    let newExplanation = prompt('Enter new explanation', 'new explanation');
+    setAnnouncements(
+      announcements[announcements.length] = {id: announcements.length, title: newTitle, briefExplanation: newExplanation, date: '' + new Date().getFullYear() + new Date().getMonth() + new Date().getDate()}
+    )
+  }
+
+  function deleteAnnouncement(id) {
+    setAnnouncements(
+      announcements.filter(announcement => announcement.id !== id)
+    )
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AnnouncementList 
+      announcements={announcements}
+      changeAnnouncement={editAnnouncement}
+      removeAnnouncement={deleteAnnouncement}
+      />
     </div>
   );
 }

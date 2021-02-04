@@ -11,6 +11,7 @@ export default function AnnouncementList(props) {
                     key={announcement.id} 
                     editAnnouncement={props.changeAnnouncement}
                     deleteAnnouncement={props.removeAnnouncement}
+                    changeVisibilityOfElements={props.changeVisibility}
                     />
                 )
             })}

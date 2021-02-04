@@ -7,9 +7,9 @@ import Search from './Search'
 function App() {
   let [storingVariablesWhenSearching, setStoringVariablesWhenSearching] = useState([]) 
   let [announcements, setAnnouncements] = useState([
-    {id: 1, title:'cxv', description:'asdszfsdfad', date:'10.10.10'},
-    {id: 2, title:'sdf', description:'dfgkjdnfgks', date:'10.10.10'},
-    {id: 3, title:'xfg', description:'sfdgijkdfgf', date:'10.10.10'},
+    {id: 1, title:'cxv', description:'asdszfsdfad', date:'10.10.10', visibility: false},
+    {id: 2, title:'sdf', description:'dfgkjdnfgks', date:'10.10.10', visibility: false},
+    {id: 3, title:'xfg', description:'sfdgijkdfgf', date:'10.10.10', visibility: false},
   ])
 
   function editAnnouncement(id) {
@@ -40,7 +40,8 @@ function App() {
           id: Date.now(),
           title,
           description,
-          date: '' + new Date().getFullYear() + '.' + new Date().getMonth() + '.' + new Date().getDate()
+          date: '' + new Date().getFullYear() + '.' + new Date().getMonth() + '.' + new Date().getDate(),
+          visibility: false
         }
       ].concat(announcements)    
     )
@@ -53,6 +54,17 @@ function App() {
       setStoringVariablesWhenSearching(storingVariablesWhenSearching =[...announcements])
       setAnnouncements(announcements.filter(announcement => announcement.title === searchQuery))
     }
+  }
+
+  function changeVisibilityOfElements(id){
+    setAnnouncements(
+      announcements.map(announcement=>{
+        if(announcement.id === id){
+          announcement.visibility = !announcement.visibility;
+        }
+        return announcement;
+      })
+    )
   }
 
   return (
@@ -69,6 +81,7 @@ function App() {
       announcements={announcements}
       changeAnnouncement={editAnnouncement}
       removeAnnouncement={deleteAnnouncement}
+      changeVisibility={changeVisibilityOfElements}
       />
     </div>
   )

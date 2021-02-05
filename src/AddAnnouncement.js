@@ -18,10 +18,10 @@ export default function AddAnnouncement({onCreate}){
     return (
         <form onSubmit={submitHandler}>
             Title:<br/>
-            <input value={title} onChange={event => setTitle(event.target.value)}/><br/>
+            <input className='titleInput' value={title} onChange={event => setTitle(event.target.value)}/><br/>
             Description: <br/>
-            <input value={description} onChange={event => setDescription(event.target.value)}/><br/>
-            <button >Add announcement</button>
+            <textarea className='descriptionInput' value={description} onChange={event => setDescription(event.target.value)}/><br/>
+            <button className='addButton'>Add announcement</button>
         </form>
     )
 }

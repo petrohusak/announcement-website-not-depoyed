@@ -17,9 +17,11 @@ export default function Search({onCreate}){
     return(
         <form onSubmit={submitHandler}>
             Enter title, that you want to find:<br/>
-            <input value={necessary} onChange={event => setNecessary(event.target.value)}/><br/>
-            <button>Search</button><br/>  
-            Press button one more time, if you want return all announcements 
+            <input className='searchInput' value={necessary} onChange={event => setNecessary(event.target.value)}/><br/>
+            <div className='searchButton'>            
+                <button>Search</button><br/>  
+            </div>
+            <p>(Press button one more time, if you want return all announcements)</p>
         </form>
     )
 }

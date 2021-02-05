@@ -16,6 +16,74 @@ div.hidden{
   display: none;
 }
 
-span.hidden{
-  display: none;
+.announcement{
+  outline: 2px solid #000;
+  width: 250px;
+  margin-bottom: 10px;
+}
+
+ul{
+  list-style-type: none;
+  padding-left: 25px;
+  margin-bottom: 200px;
+}
+
+.App{
+  width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  outline: 2px solid #000;
+  text-align: left;
+  top: 20px;
+  
+}
+
+div.siteTitle{
+  width: 365px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form{
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.titleInput{
+  width: 245px;
+}
+
+.descriptionInput{
+  width: 245px;
+  height: 50px;
+}
+
+.searchInput{
+  width: 245px;
+}
+
+p{
+  font-size: 50%;
+}
+
+.addButton{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.searchButton{
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.announcementButton{
+  text-align: right;
+}
+
+div.list{
+  margin-bottom: 10px;
 }

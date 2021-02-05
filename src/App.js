@@ -7,8 +7,8 @@ import Search from './Search'
 function App() {
   let [storingVariablesWhenSearching, setStoringVariablesWhenSearching] = useState([]); 
   let [announcements, setAnnouncements] = useState([
-    {id: 1, title:'first title', description:'first description', date:'10.12.2020', visibility: false, similar:[]},
-    {id: 2, title:'second title', description:'another description', date:'15.1.2019', visibility: false, similar:[]},
+    {id: 1, title:'first title', description:'first description', date:'10.12.2019', visibility: false, similar:[]},
+    {id: 2, title:'second title', description:'another description', date:'15.1.2020', visibility: false, similar:[]},
     {id: 3, title:'first', description:'some words', date:'1.5.2021', visibility: false, similar:[]},
   ]);
 
@@ -93,21 +93,27 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <AddAnnouncement 
-      onCreate={createAnnouncement}
-      />
+    <div>
+      <div className='siteTitle'>
+        <h1>Announcement Website</h1>
+      </div>
+      
+      <div className="App">
+        <AddAnnouncement 
+        onCreate={createAnnouncement}
+        />
 
-      <Search 
-      onCreate={switchSearch}
-      />
+        <Search 
+        onCreate={switchSearch}
+        />
 
-      <AnnouncementList 
-      announcements={announcements}
-      changeAnnouncement={editAnnouncement}
-      removeAnnouncement={deleteAnnouncement}
-      changeVisibility={changeVisibilityOfElements}
-      />
+        <AnnouncementList 
+        announcements={announcements}
+        changeAnnouncement={editAnnouncement}
+        removeAnnouncement={deleteAnnouncement}
+        changeVisibility={changeVisibilityOfElements}
+        />
+      </div>
     </div>
   )
 }

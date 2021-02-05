@@ -53,7 +53,7 @@ function App() {
       setAnnouncements(announcements = [...storingVariablesWhenSearching])
     } else {
       setStoringVariablesWhenSearching(storingVariablesWhenSearching =[...announcements])
-      setAnnouncements(announcements.filter(announcement => announcement.title === searchQuery))
+      setAnnouncements(announcements.filter(announcement => announcement.title.includes(searchQuery)))
     }
   }
    
